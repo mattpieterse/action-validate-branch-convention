@@ -1,0 +1,113 @@
+name: Unit Tests
+
+
+# - About ----------------------------------------------------------------------
+#
+# Executes a series of Unit Tests to ensure that all expect-success, 
+# expect-failure, and expect-skipped cases remain operating as expected during
+# development.
+#
+# ------------------------------------------------------------------------------
+
+
+on:
+  workflow_dispatch:
+
+
+# ------------------------------------------------------------------------------
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
+# ------------------------------------------------------------------------------
+
+
+jobs:
+
+  # Job
+  test-expect-success:
+    name: Expect Success
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    strategy:
+      matrix:
+        branch:
+          - main
+          - staging
+          - topic/new-feature
+          - topic/auth-system
+          - debug/fix-issue
+          - debug/memory-leak
+          - tests/validation
+          - tests/edge-cases
+          - rollback/v1-0-0
+          - rollback/hotfix-patch
+    steps:
+
+      # Step
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      # Step
+      - name: Expect Success on Allowed Branch Pattern
+        uses: ./
+        with:
+          branch: ${{ matrix.branch }}
+
+  # Job
+  test-expect-failure:
+    name: Expect Failure
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    strategy:
+      matrix:
+        branch:
+          - feature/test
+          - dev/fix
+          - Main
+          - STAGING
+          - invalid_branch
+          - my-feature
+          - hotfix/patch
+    steps:
+
+      # Step
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      # Step
+      - name: Expect Failure on Invalid Branch Pattern
+        uses: ./
+        with:
+          branch: ${{ matrix.branch }}
+        continue-on-error: true
+
+  # Job
+  test-expect-skipped:
+    name: Expect Skipped
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+
+      # Step
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      # Step
+      - name: Expect Skipped on Tags
+        uses: ./
+        env:
+          GITHUB_REF: refs/tags/v1.0.0
+
+
+# ------------------------------------------------------------------------------
+
