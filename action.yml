@@ -5,6 +5,15 @@ description: Enforces uniform branch naming conventions
 # ------------------------------------------------------------------------------
 
 
+inputs:
+  branch:
+    description: Specified branch name to validate (optional, for testing)
+    required: false
+
+
+# ------------------------------------------------------------------------------
+
+
 runs:
   using: node20
   main: "action.js"

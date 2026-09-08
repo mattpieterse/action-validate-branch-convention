@@ -11,10 +11,18 @@ import {
 
 
 try {
-    const githubRef = process.env.GITHUB_REF;
-    const headerRef = process.env.GITHUB_HEAD_REF;
+    let branch;
+    const inputBranch = process.env.INPUT_BRANCH;
+    if (inputBranch) {
+        branch = inputBranch;
+    } else {
+        const githubRef = process.env.GITHUB_REF;
+        const headerRef = process.env.GITHUB_HEAD_REF;
 
-    const branch = headerRef || (githubRef || '').replace(/^refs\/heads\//, '');
+        branch = headerRef || (githubRef || '').replace(/^refs\/heads\//, '');
+    }
+
+    const githubRef = process.env.GITHUB_REF;
 
     if (githubRef && githubRef.startsWith('refs/tags/')) {
         console.log(`ℹ️ Skipping branch validation for tag refs: ${githubRef}`);
