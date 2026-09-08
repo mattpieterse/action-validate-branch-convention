@@ -88,10 +88,16 @@ jobs:
 
       # Step
       - name: Expect Failure on Invalid Branch Pattern
+        id: assert_failure
         uses: ./
         with:
           branch: ${{ matrix.branch }}
         continue-on-error: true
+
+      # Step
+      - name: Assert Failure on Invalid Branch Pattern
+        if: steps.assert_failure.outcome != 'failure'
+        run: exit 1
 
   # Job
   test-expect-skipped:
