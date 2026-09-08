@@ -24,8 +24,8 @@ try {
 
     const githubRef = process.env.GITHUB_REF;
 
-    if (githubRef && githubRef.startsWith('refs/tags/')) {
-        console.log(`ℹ️ Skipping branch validation for tag refs: ${githubRef}`);
+    if ((githubRef || branch).startsWith('refs/tags/')) {
+        console.log(`ℹ️ Skipping branch validation for tag refs: ${githubRef || branch}`);
         process.exit(0);
     }
 
