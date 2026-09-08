@@ -8,8 +8,9 @@
     <img alt="Outline Trio" src="https://shieldcn.dev/group/github/stars/mattpieterse/action-validate-branch-convention+github/forks/mattpieterse/action-validate-branch-convention+github/license/mattpieterse/action-validate-branch-convention.svg?variant=secondary&amp;size=xs&amp;mode=light">
   </picture>
   <br />
+  <br />
 
-  Fully Open-Source (FOSS) composite action for your GitHub repositories to ensure that all branch names match your conventional style, and stay readable for your whole team. From personal works to school group projects, your team should speak the same language. 
+  Fully Open-Source (FOSS) composite action for your GitHub repositories to ensure that all branch names match your conventional style, and stay readable for your whole team. From collaborative repositories to school group projects, your team should speak the same language. 
 
   <sup>
   A simple tool to clear up unecessary headaches.
