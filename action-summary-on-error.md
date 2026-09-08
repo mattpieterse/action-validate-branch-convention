@@ -1,5 +1,7 @@
 ## Conventions
 
+{{TEST_WARNING}}
+
 ❌ **Invalid branch name used:** `{{BRANCH_NAME}}`
 
 Allowed conventions:

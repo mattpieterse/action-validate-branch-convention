@@ -1,0 +1,51 @@
+name: Unit Tests
+permissions:
+  contents: read
+
+
+# - About ----------------------------------------------------------------------
+#
+# This workflow orchestrates the primary CI/CD pipeline for the repository.
+#
+# ------------------------------------------------------------------------------
+
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+
+# ------------------------------------------------------------------------------
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
+# ------------------------------------------------------------------------------
+
+
+jobs:
+
+  # Job
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+
+      # Step
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      # Step
+      - name: Branches
+        uses: ./
+
+
+# ------------------------------------------------------------------------------
