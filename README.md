@@ -45,7 +45,7 @@ Actions are all stored at the root of the repository to improve the syntax for i
 This composite action was built with test-driven development (TTD) at the forefront and thus should behave predictably both in the production environment and in the testing environment with [Act CLI][act-cli] and its unofficial [VS-Code extension][act-vsc]. 
 
 1. The `action.yml` accepts an input for the branch name, which overrides the mocked GitHub context and tests the string directly. This is because Act CLI does not allow you to override the GitHub context in the YAML and passes a mocked reference anyway. 
-    - This input override should never be used in production and, when developing the project further, should always be accounted for in the `action.js` script. 
+    - This input override should never be used in production and, when developing the project further, should always be accounted for in the `src/action.js` script. 
 2. Unit tests are available in this project. In the GitHub directory, the `test.yml` workflow exists and can be executed upon despatch, where you can assert test cases as desired. Currently, we account for expected success, expected failure, and expected skip cases in a matrix.
 
 As a side note, please ensure that all tests succeed before submitting a pull request. 
