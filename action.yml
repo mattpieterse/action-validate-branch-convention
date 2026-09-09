@@ -1,6 +1,9 @@
 name: Validate Branch
+author: github.com/mattpieterse
 description: Enforces uniform branch naming conventions
-
+branding:
+  icon: branch
+  color: blue
 
 # ------------------------------------------------------------------------------
 
@@ -15,8 +18,8 @@ inputs:
 
 
 runs:
-  using: node20
-  main: "action.js"
+  using: node24
+  main: "src/action.js"
 
 
 # ------------------------------------------------------------------------------

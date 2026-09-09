@@ -10,7 +10,7 @@
   <br />
   <br />
 
-  Fully Open-Source (FOSS) composite action for your GitHub repositories to ensure that all branch names match your conventional style, and stay readable for your whole team. From collaborative repositories to school group projects, your team should speak the same language. 
+  Fully Open-Source (FOSS) action for your GitHub repositories to ensure that all branch names match your conventional style, and stay readable for your whole team. From collaborative repositories to school group projects, your team should speak the same language. 
 
   <sup>
   A simple tool to clear up unecessary headaches.
@@ -21,31 +21,38 @@
 
 ### Using this action in your projects
 
-Simply reference the action, pointing to this repository at `@main` or a specific release version. 
+> [!NOTE]
+> Using pointers to mutable references, such as a branch or version, is acceptable for 
+development but can lead to potential vulnerabilities in production environments. In production, 
+you should always point to an immutable reference, such as a specified commit hash. 
+>
+> _See [CWE-494](https://cwe.mitre.org/data/definitions/494.html) for more information._
 
-```yaml
+Reference the action, pointing to this repository at `@main` or a specific release version. 
+
+```yml
 - name: Checkout
-        uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-          fetch-depth: 1
+  uses: actions/checkout@v5 # - v7
+  with:
+    persist-credentials: false
+    fetch-depth: 1
 
 - name: Validate Branch Convention
-  uses: mattpieterse/action-validate-branch-convention@main
+  uses: mattpieterse/validate-branch-convention@main
 ```
 
 ### Getting started with development
 
-This is a JavaScript-based composite action that does not require a NodeJs package setup. 
+This is a JavaScript-based action that does not require a NodeJs package setup. 
 
 Actions are all stored at the root of the repository to improve the syntax for importing and using the action in other projects. Summaries to be published at the end of runs are all stored as Markdown files and then injected. To get started, clone or download the repository and open it in any code editor of your choice. VS-Code is recommended because of the extension support for Act, but this project is straightforward to jump into in any environment. 
 
 #### Testing
 
-This composite action was built with test-driven development (TTD) at the forefront and thus should behave predictably both in the production environment and in the testing environment with [Act CLI][act-cli] and its unofficial [VS-Code extension][act-vsc]. 
+This action was built with test-driven development (TTD) at the forefront and thus should behave predictably both in the production environment and in the testing environment with [Act CLI][act-cli] and its unofficial [VS-Code extension][act-vsc]. 
 
 1. The `action.yml` accepts an input for the branch name, which overrides the mocked GitHub context and tests the string directly. This is because Act CLI does not allow you to override the GitHub context in the YAML and passes a mocked reference anyway. 
-    - This input override should never be used in production and, when developing the project further, should always be accounted for in the `action.js` script. 
+    - This input override should never be used in production and, when developing the project further, should always be accounted for in the `src/action.js` script. 
 2. Unit tests are available in this project. In the GitHub directory, the `test.yml` workflow exists and can be executed upon despatch, where you can assert test cases as desired. Currently, we account for expected success, expected failure, and expected skip cases in a matrix.
 
 As a side note, please ensure that all tests succeed before submitting a pull request. 
@@ -64,7 +71,7 @@ As a side note, please ensure that all tests succeed before submitting a pull re
 This reusable GitHub Actions project was built for personal development purposes but is Fully Open-Source (FOSS) for all to use in their personal works and create derivatives under the terms of the licence at the end of this file. In fact, this is encouraged, just like we encourage you to engage in our discussions community. If you find use in this project and would like to support its development, we are open to looking into the following: 
 
 1. Fixes from minor usability issues to breaking errors which you can [report through our issues][repo-issues] templates.
-2. Improve the extensibility, robustness, usability, and overall developer experience of this composite action to suit a broader range of use cases beyond those currently supported, especially if these requests or contributions can easily be deemed as beneficial to the open source community at large.
+2. Improve the extensibility, robustness, usability, and overall developer experience of this action to suit a broader range of use cases beyond those currently supported, especially if these requests or contributions can easily be deemed as beneficial to the open source community at large.
 3. Patching security vulnerabilities that may propagate through this action [reported in a private advisory][repo-vulnerability]. 
 4. Improve support for local testing with [Act CLI][act-cli] and the [VS-Code Extension][act-vsc].
 
@@ -108,9 +115,9 @@ Please read the [AI Contributions Policy][ai-policy].
 
 ## License
 
-This repository is licenced under the [GNU GPLv3][license] licence, a copyleft FOSS license.
+This repository is licenced under the [GNU GPLv3][license] license, a copyleft FOSS license.
 
-Some files are released under the [The Unlicense][the-unlicense] as follows:
+Some files are released under [The Unlicense][the-unlicense] as follows:
 
 - `README.md`
 - `.github/*`
