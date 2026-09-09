@@ -21,14 +21,14 @@
 
 ### Using this action in your projects
 
-Simply reference the action, pointing to this repository at `@main` or a specific release version. 
+Reference the action, pointing to this repository at `@main` or a specific release version. 
 
-```yaml
+```yml
 - name: Checkout
-        uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-          fetch-depth: 1
+  uses: actions/checkout@v5 # - v7
+  with:
+    persist-credentials: false
+    fetch-depth: 1
 
 - name: Validate Branch Convention
   uses: mattpieterse/action-validate-branch-convention@main
