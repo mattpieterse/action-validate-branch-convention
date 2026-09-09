@@ -1,6 +1,9 @@
 name: Validate Branch
+author: github.com/mattpieterse
 description: Enforces uniform branch naming conventions
-
+branding:
+  icon: branch
+  color: blue
 
 # ------------------------------------------------------------------------------
 
