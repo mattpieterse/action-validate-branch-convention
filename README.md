@@ -21,6 +21,13 @@
 
 ### Using this action in your projects
 
+> [!NOTE]
+> Using pointers to mutable references, such as a branch or version, is acceptable for 
+development but can lead to potential vulnerabilities in production environments. In production, 
+you should always point to an immutable reference, such as a specified commit hash. 
+>
+> _See [CWE-494](https://cwe.mitre.org/data/definitions/494.html) for more information._
+
 Reference the action, pointing to this repository at `@main` or a specific release version. 
 
 ```yml
@@ -31,7 +38,7 @@ Reference the action, pointing to this repository at `@main` or a specific relea
     fetch-depth: 1
 
 - name: Validate Branch Convention
-  uses: mattpieterse/action-validate-branch-convention@main
+  uses: mattpieterse/validate-branch-convention@main
 ```
 
 ### Getting started with development
