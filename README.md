@@ -108,9 +108,9 @@ Please read the [AI Contributions Policy][ai-policy].
 
 ## License
 
-This repository is licenced under the [GNU GPLv3][license] licence, a copyleft FOSS license.
+This repository is licenced under the [GNU GPLv3][license] license, a copyleft FOSS license.
 
-Some files are released under the [The Unlicense][the-unlicense] as follows:
+Some files are released under [The Unlicense][the-unlicense] as follows:
 
 - `README.md`
 - `.github/*`
